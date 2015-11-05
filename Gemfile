@@ -1,6 +1,10 @@
 source 'https://rubygems.org'
 
 
+# Use Figaro gem for storing environment variables
+gem 'figaro', '1.0'
+# Use Devise gem for user authentication
+gem 'devise'
 # Use Bootstrap for styling
 gem 'bootstrap-sass'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
