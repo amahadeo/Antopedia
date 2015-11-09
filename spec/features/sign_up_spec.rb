@@ -22,16 +22,14 @@ describe "Sign up flow" do
   
   describe "unsuccessful" do
     it "with duplicate email, leaves error message" do
-      user = User.new(username: 'bdoodle', password: '123456789', password_confirmation: '123456789', email: 'bobbydoodle@bd.com')
-      user.skip_confirmation!
-      user.save
+      user = create(:user)
       
       visit new_user_registration_path
       
-      fill_in 'Username', with: 'bdoodle'
-      fill_in 'Password', with: '123456789'
-      fill_in 'Password confirmation', with: '123456789'
-      fill_in 'Email', with: 'bobbydoodle@bd.com'
+      fill_in 'Username', with: user.username
+      fill_in 'Password', with: user.password
+      fill_in 'Password confirmation', with: user.password
+      fill_in 'Email', with: user.email
       
       click_button('Sign up')
       expect(current_path).to eq(user_registration_path)
