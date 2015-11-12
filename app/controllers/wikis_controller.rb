@@ -13,7 +13,8 @@ class WikisController < ApplicationController
     if @wiki.save
       redirect_to @wiki, notice: "New wiki created!"
     else
-      render :new, notice: "Sorry there was an error creating this wiki."
+      flash[:error] = "Sorry there was an error creating this wiki."
+      render :new
     end
   end
 
@@ -27,7 +28,8 @@ class WikisController < ApplicationController
     if @wiki.update_attributes(wiki_params)
       redirect_to @wiki, notice: "Thanks for contributing! Wiki updated."
     else
-      render :edit, error: "Sorry, there was an error updating wiki."
+      flash[:error] = "Sorry, there was an error updating wiki."
+      render :edit
     end
   end
   
