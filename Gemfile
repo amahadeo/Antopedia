@@ -7,6 +7,10 @@ gem 'figaro', '1.0'
 gem 'devise'
 # Use Bootstrap for styling
 gem 'bootstrap-sass'
+# Use Pundit for user authorization
+gem 'pundit'
+# Use Faker gem for seed data
+gem 'faker'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 # Use PostgreSQL as the database for Active Record in production

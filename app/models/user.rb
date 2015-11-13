@@ -7,4 +7,18 @@ class User < ActiveRecord::Base
   validates :username, presence: true, uniqueness: true
   
   has_many :wikis
+  
+  after_initialize :init
+  
+  def init
+    self.role ||= 'standard'
+  end
+  
+  def admin?
+    role == 'admin'
+  end
+  
+  def premium?
+    role == 'premium'
+  end
 end
