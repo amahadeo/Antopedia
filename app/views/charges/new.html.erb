@@ -1,0 +1,14 @@
+<h1>Upgrade Membership</h1>
+
+<p>
+  Here at Antopedia, we offer users the ability to upgrade to premium membership. 
+  With this distinction, users are able to create private wikis that only they (and the
+  collaborators they chose) can see + edit! For only $15, premium members are able to put
+  this awesome tool to use. See you on the other side!
+</p>
+<%= form_tag charges_path do %>
+  <h4>Upgrade here!</h4>
+  <script class='stripe-button' src="https://checkout.stripe.com/checkout.js" data-key="<%= @stripe_btn_data[:key] %>" data-amount=<%= @stripe_btn_data[:amount] %> data-description="<%= @stripe_btn_data[:description] %>" ></script>
+<% end %>
+
+

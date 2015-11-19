@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
-
+# Use Stripe gem to handle payment processing
+gem 'stripe'
 # Use Figaro gem for storing environment variables
 gem 'figaro', '1.0'
 # Use Devise gem for user authentication
