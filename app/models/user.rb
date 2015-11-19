@@ -18,7 +18,23 @@ class User < ActiveRecord::Base
     role == 'admin'
   end
   
+  def standard?
+    role == 'standard'
+  end
+  
   def premium?
     role == 'premium'
+  end
+  
+  def upgrade
+    if self.standard? #conditional statement meant to protect admin users
+      self.update_attribute(:role, 'premium')
+    end
+  end
+  
+  def downgrade
+    if self.premium?
+      self.update_attribute(:role, 'standard')
+    end
   end
 end
