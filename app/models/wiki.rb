@@ -4,4 +4,9 @@ class Wiki < ActiveRecord::Base
   validates :title, presence: true
   validates :body, presence: true
   
+  scope :visible_to, -> (user) { (user && (user.premium? || user.admin?)) ? all : where(private: false) }
+  
+  def make_public
+    update_attribute(:private, false)
+  end
 end

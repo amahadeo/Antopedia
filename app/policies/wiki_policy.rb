@@ -5,18 +5,18 @@ class WikiPolicy < ApplicationPolicy
   end
   
   def show?
-    true
+    !record.private? || (user.present? && (user.premium? || user.admin?))
   end
   
   def create?
-    user.present?
+    record.private ? (user.present? && (user.premium? || user.admin?)) : user.present?
   end
   
   def update?
-    user.present?
+    record.private ? (user.present? && (user.premium? || user.admin?)) : user.present?
   end
   
   def destroy?
-    user.present?
+    record.private ? (user.present? && (user.premium? || user.admin?)) : user.present?
   end
 end

@@ -36,12 +36,21 @@ class ChargesController < ApplicationController
   # Membership downgrade actions grouped into charges controller to facilitate refund/reimbursement ability
   def edit
     authorize :charge, :edit?
+    
+    @privwikis = current_user.wikis.where(private: true)
   end
   
   def destroy
     authorize :charge, :destroy?
     
     current_user.downgrade
+    
+    @privwikis = current_user.wikis.where(private: true)
+    if @privwikis.any?
+      @privwikis.each do |wiki|
+        wiki.make_public
+      end
+    end
     
     flash[:alert] = "Your membership has been downgraded to 'Standard'"
     redirect_to wikis_path
