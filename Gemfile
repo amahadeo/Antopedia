@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+# Use Redcarpet gem to parse markdown syntax
+gem 'redcarpet'
 # Use Stripe gem to handle payment processing
 gem 'stripe'
 # Use Figaro gem for storing environment variables
