@@ -5,25 +5,21 @@
     <table class="table table-condensed table-hover" id="wiki-table">
       <tbody>
         <% @wikis.each do |wiki| %>
-          <div>
-            <div>
-                  <tr>
-                    <td>
-                      <h4><%= link_to wiki.title, wiki %></h4>
-                    </td>
-                    <td>
-                      <% if policy(wiki).edit? %>
-                      <h4><%= link_to "Edit", edit_wiki_path(wiki), class: "btn btn-info btn-xs" %></h4>
-                      <% end %>
-                    </td>
-                    <td>
-                      <% if policy(wiki).destroy? %>
-                      <h4><%= link_to "Delete", wiki, method: :delete, class: "btn btn-danger btn-xs" %></h4>
-                      <% end %>
-                    </td>
-                  </tr>
-            </div>
-          </div>
+          <tr>
+            <td>
+              <h4><%= link_to (markdown_to_html wiki.title), wiki %></h4>
+            </td>
+            <td>
+              <% if policy(wiki).edit? %>
+              <h4><%= link_to "Edit", edit_wiki_path(wiki), class: "btn btn-info btn-xs" %></h4>
+              <% end %>
+            </td>
+            <td>
+              <% if policy(wiki).destroy? %>
+              <h4><%= link_to "Delete", wiki, method: :delete, class: "btn btn-danger btn-xs" %></h4>
+              <% end %>
+            </td>
+          </tr>
         <% end %>
       </tbody>
     </table>
