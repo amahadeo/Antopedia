@@ -1,7 +1,11 @@
 class WikisController < ApplicationController
   def index
-    @wikis = policy_scope(Wiki)
-    #authorize @wikis
+    wikis = policy_scope(Wiki)
+    @privatewikis = wikis.select {|w| w.private }
+    publicwikis = wikis.select {|w| w.public? }
+    #preferential to solve with active record relations/queries, but following suit with policy scope
+    @publicwikis = publicwikis.paginate(:page => params[:page], :per_page => 12)
+    #paginating public wikis only, under the premise that most users will have few private and many public wikis
   end
 
   def new

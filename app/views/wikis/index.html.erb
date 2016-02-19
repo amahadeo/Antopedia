@@ -2,27 +2,25 @@
 
 <div class="row">
   <div class="col-md-12">
-    <table class="table table-condensed table-hover" id="wiki-table">
+    <% if @privatewikis.any? %>
+      <h3>Private Wikis</h3>
+      <table class="table table-condensed table-hover" id="wiki-table">
+        <tbody>
+          <%= render @privatewikis %>
+            
+        </tbody>
+      </table>
+    <% end %>
+    
+    <h3>Public Wikis</h3>
+    <table class="table table-condensed table-hover" id="wiki-table2">
       <tbody>
-        <% @wikis.each do |wiki| %>
-          <tr>
-            <td>
-              <h4><%= link_to (markdown_to_html wiki.title), wiki %></h4>
-            </td>
-            <td>
-              <% if policy(wiki).edit? %>
-              <h4><%= link_to "Edit", edit_wiki_path(wiki), class: "btn btn-info btn-xs" %></h4>
-              <% end %>
-            </td>
-            <td>
-              <% if policy(wiki).destroy? %>
-              <h4><%= link_to "Delete", wiki, method: :delete, class: "btn btn-danger btn-xs" %></h4>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
+        <%= render @publicwikis %>
+          
       </tbody>
     </table>
+    <%= will_paginate @publicwikis %>
+    
     <div class="text-center">
       <% if policy(Wiki.new).new? %>
         <%= link_to "New Wiki", new_wiki_path, class: "btn btn-success" %>
