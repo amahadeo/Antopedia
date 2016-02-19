@@ -1,7 +1,7 @@
 class WikisController < ApplicationController
   def index
-    @wikis = Wiki.visible_to(current_user)
-    authorize @wikis
+    @wikis = policy_scope(Wiki)
+    #authorize @wikis
   end
 
   def new
@@ -31,6 +31,10 @@ class WikisController < ApplicationController
     authorize @wiki
     
     if @wiki.update_attributes(wiki_params)
+      if @wiki.private
+        Collaborator.where(wiki: @wiki, user: current_user).first_or_create
+        # Creates automatic collaborator for user that changes public wiki into private wiki (if doesn't exist already)
+      end
       redirect_to @wiki, notice: "Thanks for contributing! Wiki updated."
     else
       flash[:error] = "Sorry, there was an error updating wiki."

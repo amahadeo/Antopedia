@@ -1,5 +1,7 @@
 class Wiki < ActiveRecord::Base
   belongs_to :user
+  has_many :collaborators, dependent: :destroy
+  has_many :users, through: :collaborators
   
   validates :title, presence: true
   validates :body, presence: true
@@ -8,5 +10,9 @@ class Wiki < ActiveRecord::Base
   
   def make_public
     update_attribute(:private, false)
+  end
+  
+  def public?
+    !private
   end
 end
