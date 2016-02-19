@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+# Use Paginate to shorten index page
+gem 'will_paginate', '~> 3.0.6'
 # Use Redcarpet gem to parse markdown syntax
 gem 'redcarpet'
 # Use Stripe gem to handle payment processing
