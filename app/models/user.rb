@@ -5,8 +5,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
   
   validates :username, presence: true, uniqueness: true
-  
+  scope :all_except, -> (user) { where.not(id: user) }
   has_many :wikis
+  has_many :collaborators, dependent: :destroy
   
   after_initialize :init
   

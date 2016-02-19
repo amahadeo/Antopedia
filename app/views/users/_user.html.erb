@@ -1,0 +1,16 @@
+<tr>
+  <td><%= user.username %></td>
+  <td><%= user.email %></td>
+  <%= content_tag :td, id: "user-access-#{user.id}" do %>
+    
+    <% if wiki.user == user && user.premium? %>
+      <p class="btn btn-primary">Owner</p> <!-- Eliminate redundancy of creating collaborator access for premium owner of private record -->
+    <% elsif !collaborators.include?(user) %>
+      <%= link_to "Give Access", wiki_user_collaborators_path(wiki, user), method: :post, class: "btn btn-success" %>
+    <% else %>
+      <%= link_to "Remove Access", wiki_user_collaborators_path(wiki, user), method: :delete, class: "btn btn-danger" %>
+    <% end %>
+  
+  <% end %>
+
+</tr>

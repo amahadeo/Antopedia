@@ -1,3 +1,7 @@
 <h1>Edit Wiki</h1>
 
 <%= render partial: 'form', locals: { wiki: @wiki } %>
+
+<% if @wiki.private %>
+  <%= link_to "Add/Remove Collaborators", wiki_collaborators_path(@wiki), class: "btn btn-primary" %>
+<% end %>
