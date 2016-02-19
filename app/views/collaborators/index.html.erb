@@ -1,0 +1,16 @@
+<h1>Add Collaborators for <%= @wiki.title %> </h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Access</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <%= render partial: 'users/user', locals: {user: user, collaborators: @collaborators, wiki: @wiki} %>
+    <% end %>
+  </tbody>
+</table>
