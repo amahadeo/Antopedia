@@ -1,0 +1,5 @@
+<% if @collaborator.valid? %>
+  $('#user-access-' +<%= @user.id %>).html("<%= escape_javascript(link_to "Remove Access", wiki_user_collaborators_path(@wiki, @user), method: :delete, class: "btn btn-danger", remote: true) %>");
+<% else %>
+  $('.title').prepend("<div class='alert alert-danger'><%= flash[:error] %></div>");
+<% end %>

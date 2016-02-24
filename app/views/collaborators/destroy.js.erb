@@ -1,0 +1,5 @@
+<% if @collaborator.destroyed? %>
+  $('#user-access-' +<%= @user.id %>).html("<%= escape_javascript(link_to "Give Access", wiki_user_collaborators_path(@wiki, @user), method: :post, class: "btn btn-success", remote: true) %>");
+<% else %>
+  $('.title').prepend("<div class='alert alert-danger'><%= flash[:error] %></div>");
+<% end %>
