@@ -13,11 +13,14 @@ class CollaboratorsController < ApplicationController
     @collaborator = Collaborator.new(wiki: @wiki, user: @user)
     
     if @collaborator.save
-      flash[:notice] = "#{@user.username} has been added as a collaborator"
-      redirect_to wiki_collaborators_path(@wiki)
+      flash[:notice] = "Thank you for adding collaborators!"
     else
       flash[:error] = "There was an error. Please try again."
-      redirect_to wiki_collaborators_path(@wiki)
+    end
+    
+    respond_to do |format|
+      format.html
+      format.js
     end
   end
   
@@ -28,11 +31,14 @@ class CollaboratorsController < ApplicationController
     @collaborator = Collaborator.where(wiki: @wiki, user: @user).first
     
     if @collaborator.destroy
-      flash[:alert] = "#{@user.username} has been removed as a collaborator"
-      redirect_to wiki_collaborators_path(@wiki)
+      flash[:alert] = "Collaborators have been removed."
     else
       flash[:error] = "There was an error. Please try again."
-      redirect_to wiki_collaborators_path(@wiki)
+    end
+    
+    respond_to do |format|
+      format.html
+      format.js
     end
   end
 end
