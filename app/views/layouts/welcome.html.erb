@@ -44,7 +44,6 @@
         
   </nav>
     
-  <div class="container top-padding">
     <% if flash[:notice] %>
       <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -63,7 +62,7 @@
     <% end %>
 
   
-    <%= yield %>
-  </div>
+  <%= yield %>
+  
 </body>
 </html>
