@@ -1,6 +1,10 @@
 <h1><%= markdown_to_html @wiki.title %></h1>
+<br/>
+
 <p><%= markdown_to_html @wiki.body %></p>
 
+<br/>
+<br/>
 <% if policy(@wiki).edit? %>
   <%= link_to "Edit Wiki", edit_wiki_path(@wiki), class: "btn btn-success" %>
 <% end %>
