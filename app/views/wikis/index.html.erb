@@ -25,6 +25,12 @@
       <% if policy(Wiki.new).new? %>
         <%= link_to "New Wiki", new_wiki_path, class: "btn btn-success" %>
       <% end %>
+      <% if policy(:charge).new? %>
+        <%= link_to "Upgrade Membership", new_charges_path, class: "btn btn-primary" %>
+      <% end %>
+      <% if policy(:charge).edit? %>
+        <%= link_to "Downgrade Membership", edit_charges_path, class: "btn btn-danger" %>
+      <% end %>
     </div>
     <br/>
     <br/>
